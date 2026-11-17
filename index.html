@@ -6,7 +6,8 @@
 <title>Small details, big impression — Phạm Thị Hồng Huệ · Sun PhuQuoc Airways</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
 <style>
 :root{
   --red:#D71F27; --red-deep:#8E1016; --gold:#ECC11B; --gold-deep:#C99400; --sand:#E9D9C2; --brown:#7A4A2C; --cream:#FBF7F1;
@@ -72,13 +73,7 @@ body[data-tone=dark] .sun .w,body[data-tone=dark] #brand .w{opacity:1}
 #brand .lg{position:absolute;left:76px;top:54px;height:60px;width:210px;transition:left 1.8s var(--io-deep),transform 1.8s var(--io-deep),opacity 1s var(--io)}
 body[data-logo=center] #brand .lg{left:960px;transform:translateX(-50%)}
 body[data-logo=none] #brand .lg{opacity:0}
-.wait-bg{position:absolute;inset:0;background:url(img/wait-plane.jpg) center 45%/cover no-repeat;image-rendering:auto}
 @keyframes kb{0%{transform:scale(1) translate3d(0,0,0)}100%{transform:scale(1.08) translate3d(-1.5%,-1%,0)}}
-.wait-sun{position:absolute;left:-7vh;bottom:-9vh;width:44vh;aspect-ratio:1;opacity:.42;}
-.wait-sun img{width:100%;height:100%;animation:spin 140s linear infinite}
-.wait-logo{position:absolute;left:50%;top:150px;height:150px;transform:translateX(-50%)}
-.wait-logo.a{transform:translateX(-50%) scale(1.15)}.wait-logo.a.in{transform:translateX(-50%)}
-.wait-logo img{height:100%;}
 #brand img{position:absolute;left:0;top:0;height:100%;transition:opacity 1.6s var(--io)}
 /* ================= STAGE ================= */
 #stage{position:fixed;inset:0;z-index:4;perspective:2600px;perspective-origin:50% 45%}
@@ -396,17 +391,7 @@ body.editing #editbar{display:flex}
 #fsHint{position:fixed;inset:0;z-index:55;display:grid;place-items:center;background:rgba(20,8,8,.55);color:#fff;font:500 22px var(--sans);text-align:center;cursor:pointer}
 #fsHint b{display:block;font-family:var(--serif);font-size:44px;font-weight:400;margin-bottom:10px}
 
-/* ================= START OVERLAY + PRESENTER ================= */
-#start{position:fixed;inset:0;z-index:50;display:grid;place-items:center;background:rgba(20,8,8,.35);transition:opacity .6s}
-#start.hide{opacity:0;pointer-events:none}
-#start .box{width:min(640px,92vw);padding:40px 44px;border-radius:30px;background:rgba(30,14,12,.82);color:#fff;font-family:var(--sans);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 40px 80px -20px rgba(0,0,0,.6)}
-#start h2{margin:0 0 6px;font-family:var(--serif);font-weight:400;font-size:36px}
-#start p{margin:0 0 22px;color:rgba(255,255,255,.65);font-size:14px;line-height:1.6}
-#start button{display:block;width:100%;margin-top:12px;padding:16px 20px;border:0;border-radius:16px;font:600 16px var(--sans);cursor:pointer;text-align:left;color:#fff;background:rgba(255,255,255,.1);box-shadow:inset 0 1px 0 rgba(255,255,255,.2)}
-#start button.pri{background:linear-gradient(135deg,#E5262E,#B5121A);box-shadow:0 14px 30px -10px rgba(215,31,39,.7)}
-#start button small{display:block;font-weight:400;font-size:13px;opacity:.7;margin-top:3px}
-#start .msg{margin-top:14px;font-size:13px;color:#FFD54A;min-height:18px}
-#start .diag{margin-top:6px;font-size:12px;opacity:.55;font-family:ui-monospace,Menlo,Consolas,monospace}
+/* PRESENTER */
 body.m-mirror #hud,body.m-mirror #start,body.m-audience #start{display:none}
 body.m-presenter>*:not(#console):not(script){display:none!important}
 body.m-presenter{background:#141012;cursor:default}
@@ -457,6 +442,14 @@ body[data-logo=none] #count,body[data-logo=none] #prog{opacity:0}
 .kin.in .ch{transition-delay:calc(var(--d,0) * 110ms + var(--i) * 42ms + var(--bd,0ms) + 280ms)}
 .g-white,.g-red,.dot,.outline,.ring{will-change:auto}
 .g-white{stroke-width:3.6}.g-red{stroke-width:4.2}
+
+/* ===== performance ===== */
+.scene:not(.active) *,.scene:not(.active){animation-play-state:paused!important}
+.bgl:not(.show) .blob{animation:none!important}
+body.lite .blob,body.lite .sun .rot,body.lite .sway{animation:none!important}
+#tip{position:fixed;left:50%;bottom:34px;transform:translate(-50%,20px);padding:12px 26px;border-radius:999px;font:500 15px var(--sans);opacity:0;transition:all .8s var(--io);z-index:12;pointer-events:none;white-space:nowrap}
+#tip.show{opacity:1;transform:translate(-50%,0)}
+body.lite .sheen,body.lite .ripple{display:none}
 </style>
 </head>
 <body>
@@ -473,13 +466,6 @@ body[data-logo=none] #count,body[data-logo=none] #prog{opacity:0}
 <div id="brand"><div class="safe"><div class="lg"><img class="c" src="img/logo-spa.svg" alt=""><img class="w" src="img/logo-spa-white.svg" alt=""></div></div></div>
 
 <div id="stage">
-
-<!-- 0 · WAITING SLIDE -->
-<section class="scene" id="s-wait" data-code="0" data-bg="pearl" data-tone="light" data-tr="dolly" data-logo="none">
-  <div class="wait-bg"></div>
-  <div class="safe">
-  </div>
-</section>
 
 <!-- 1 · TITLE -->
 <section class="scene" id="s-title" data-code="1" data-bg="sunset" data-tone="dark" data-tr="dolly" data-logo="center">
@@ -802,15 +788,15 @@ const SRC='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
    ================================================================ */
 const IMG_DIR='img/';
 const IMAGES={
-  thy:['01-khanh-thy.jpg','Gương mặt 1 — mày rủ, buồn'], yen:['02-bao-yen.jpg','Gương mặt 2 — mày xếch, cau có'], loan:['03-thuy-loan.jpg','Thúy Loan — mày hài hòa'],
-  base:['03-thuy-loan-face.jpg','Ảnh gốc (đang dùng mặt Thúy Loan)'], loanface:['03-thuy-loan-face.jpg','Thúy Loan — cận mặt'], shaved:['05-da-cao.jpg','Đã cạo lông ngoài khung'], trimmed:['06-da-tia.jpg','Đã tỉa lông dài'],
-  lower:['07-vien-duoi-duoi.jpg','Tô viền dưới + đuôi'], filled:['08-to-than-dau.jpg','Tô thân + đầu mày'], final:['09-hoan-chinh.jpg','Mày hoàn chỉnh'],
-  crew_thy:['10a-crew-khanh-thy.jpg','Khánh Thy — đồng phục'], crew_yen:['10b-crew-bao-yen.jpg','Bảo Yến — đồng phục'], crew_loan:['10c-crew-thuy-loan.jpg','Thúy Loan — đồng phục'],
-  r1_err:['02-bao-yen.jpg','Vòng 1 · đỉnh mày quá cao'], r2_err:['r2-long-may-dai.jpg','Vòng 2 · đuôi dài, cụp'],
-  r3_err:['r3-long-tap.jpg','Vòng 3 · Thúy Loan — lông tạp'], r4_err:['r4-dau-dam-duoi-nhat.jpg','Mở rộng · đầu đậm, đuôi nhạt'],
-  male_unibrow:['r5-bao-nam-noi-giua.jpg','Bảo Nam — lông mọc nối giữa hai mày'], male_ok:['14-nam-chuan.jpg','Tiếp viên nam — chuẩn'],
-  male_before:['r5-bao-nam-noi-giua.jpg','Nam — trước: rậm, lông tạp'], male_after:['14-nam-chuan.jpg','Nam — sau: gọn, thẳng'],
-  cover:['cover-crew.jpg','Ảnh tổ bay (slide kết)'],
+  thy:['01-khanh-thy.webp','Gương mặt 1 — mày rủ, buồn'], yen:['02-bao-yen.webp','Gương mặt 2 — mày xếch, cau có'], loan:['03-thuy-loan.webp','Thúy Loan — mày hài hòa'],
+  base:['03-thuy-loan-face.webp','Ảnh gốc (đang dùng mặt Thúy Loan)'], loanface:['03-thuy-loan-face.webp','Thúy Loan — cận mặt'], shaved:['05-da-cao.webp','Đã cạo lông ngoài khung'], trimmed:['06-da-tia.webp','Đã tỉa lông dài'],
+  lower:['07-vien-duoi-duoi.webp','Tô viền dưới + đuôi'], filled:['08-to-than-dau.webp','Tô thân + đầu mày'], final:['09-hoan-chinh.webp','Mày hoàn chỉnh'],
+  crew_thy:['10a-crew-khanh-thy.webp','Khánh Thy — đồng phục'], crew_yen:['10b-crew-bao-yen.webp','Bảo Yến — đồng phục'], crew_loan:['10c-crew-thuy-loan.webp','Thúy Loan — đồng phục'],
+  r1_err:['02-bao-yen.webp','Vòng 1 · đỉnh mày quá cao'], r2_err:['r2-long-may-dai.webp','Vòng 2 · đuôi dài, cụp'],
+  r3_err:['r3-long-tap.webp','Vòng 3 · Thúy Loan — lông tạp'], r4_err:['r4-dau-dam-duoi-nhat.webp','Mở rộng · đầu đậm, đuôi nhạt'],
+  male_unibrow:['r5-bao-nam-noi-giua.webp','Bảo Nam — lông mọc nối giữa hai mày'], male_ok:['14-nam-chuan.webp','Tiếp viên nam — chuẩn'],
+  male_before:['r5-bao-nam-noi-giua.webp','Nam — trước: rậm, lông tạp'], male_after:['14-nam-chuan.webp','Nam — sau: gọn, thẳng'],
+  cover:['cover-crew.webp','Ảnh tổ bay (slide kết)'],
 };
 /* Mốc đo lông mày slide 4 (khung 1000×1250, nửa trái — bên phải tự đối xứng) */
 const FACE={cx:500,nose:[395,770],iris:[295,480],eye:[195,490],eyeIn:[385,510],startTop:380,startBot:414,archY:340,archBot:368,tailY:381,lip:[500,905]};
@@ -827,7 +813,6 @@ const SUNS={
   'R': [[990,1180,800,.07],[1890,70,340,.05]],
   'BW':[[960,560,1750,.09],[1820,980,380,.07]],
   'SPA':[[1700,280,1350,.08],[150,950,420,.06]],'SPD':[[40,1010,950,.08],[1900,980,380,.05]],
-  '0': [[1500,300,900,0],[300,900,300,0]],
   'P1':[[420,520,1300,.12],[1820,960,360,.06]],'P2':[[420,560,1350,.12],[1830,140,360,.06]],'P3':[[420,520,1350,.15],[1830,950,360,.08]],'P4':[[420,540,1400,.12],[1830,150,360,.07]],
   'WHY':[[1500,1150,1100,.09],[100,140,360,.06]],
   '3': [[1860,90,950,.10],[70,1010,420,.07]],
@@ -851,7 +836,6 @@ const LETTERS=[["B", "<b>Begin</b> – where the brow starts", "Đầu mày"], [
 const STARS={'Khánh Thy':'Katy Perry','Bảo Yến':'Beyoncé','Thúy Loan':'Taylor Swift','Bảo Nam':'Bruno Mars'};
 
 const NOTES={
- '0':[["(Slide chờ — chuẩn bị. Sẵn sàng thì bấm Tiếp để vào bài.)",""]],
  '1':[["Good morning, ladies and gentlemen. My name is Phạm Thị Hồng Huệ. I am a Cabin Manager at Sun PhuQuoc Airways. I have eight years of experience in aviation, and five years as a Cabin Manager. It is a great honor for me to be here today, at the interview for Grooming Instructors of Sun PhuQuoc Airways. Thank you for your time.",""]],
  'P1':[["Now, let's start our journey with a small question.",""]],
  '2':[["Imagine you are on a flight today. There are three flight attendants: number one, number two, and number three. Who do you want to serve you? Please show me with your fingers: one, two, or three.","(Phần lớn sẽ chọn gương mặt số 3 — Thúy Loan.)"]],
@@ -939,7 +923,7 @@ function hairs(p,g,s,o){const m=s?mir:x=>x,R=rand(o.seed),{F,sx,ax,tx}=g,grp=svg
     svgEl('path',{d:`M${m(x)},${y} q${ddx*.5},${dy*.6} ${ddx},${dy}`,class:'hair'},grp)}
   if(o.mode==='stray')for(let i=0;i<10;i++){const x=470+R()*60,y=560+R()*50;svgEl('path',{d:`M${x},${y} l${(R()-.5)*10},-${10+R()*10}`,class:'hair'},grp)}}
 function buildFace(box){const kind=box.dataset.face,g=geom(),F=FACE,fr=document.createElement('div');fr.className='frame glass';
-  fr.innerHTML=`<div class="ph" data-img="${box.dataset.base}"></div>`+(kind==='brows'?`<div class="ph layer a fx-fade fx-slow" data-in="8" data-img="shaved"></div><div class="ph layer a fx-fade" data-in="9" data-img="trimmed"></div><div class="ph layer a fx-fade" data-in="11" data-img="lower"></div><div class="ph layer a fx-fade" data-in="12" data-img="filled"></div><div class="ph layer a fx-fade" data-in="13" data-img="final"></div>`:'');
+  fr.innerHTML=`<div class="ph" data-img="${box.dataset.base}"></div>`;
   box.appendChild(fr);const svg=svgEl('svg',{class:'ov',viewBox:'0 0 1000 1250'},box),defs=svgEl('defs',{},svg);
   [0,1].forEach(s=>{const lg=svgEl('linearGradient',{id:'bf'+s+kind,x1:s?mir(g.sx):g.sx,x2:s?mir(g.tx):g.tx,y1:0,y2:0,gradientUnits:'userSpaceOnUse'},defs);
     svgEl('stop',{offset:0,'stop-color':'#6a4c3c','stop-opacity':.18},lg);svgEl('stop',{offset:.55,'stop-color':'#4c3427','stop-opacity':.8},lg);svgEl('stop',{offset:1,'stop-color':'#2a1a12','stop-opacity':1},lg)});
@@ -966,9 +950,9 @@ $$('[data-face]').forEach(buildFace);
 
 
 /* images */
-$$('.ph[data-img]').forEach(ph=>{const k=ph.dataset.img,d=IMAGES[k]||[k+'.jpg',k];
+$$('.ph[data-img]').forEach(ph=>{const k=ph.dataset.img,d=IMAGES[k]||[k+'.webp',k];
   ph.insertAdjacentHTML('beforeend',`<img alt=""><div class="hold"><div class="ic">＋</div><div class="lb">${d[1]}</div><div class="fn">${IMG_DIR}${d[0]}</div></div>`);
-  const img=$('img',ph);img.onload=()=>{ph.classList.add('has');const f=ph.closest('.face');if(f&&ph===f.querySelector('.ph'))f.classList.add('has-photo')};img.src=IMG_DIR+d[0]});
+  const img=$('img',ph);img.decoding='async';img.onload=()=>{ph.classList.add('has');const f=ph.closest('.face');if(f&&ph===f.querySelector('.ph'))f.classList.add('has-photo')};img.src=IMG_DIR+d[0]});
 
 /* split words */
 function splitEl(el){let i=0;const walk=n=>[...n.childNodes].forEach(c=>{
@@ -1097,7 +1081,7 @@ let buf='',bufT;const showBuf=()=>{const j=$('#jump');if(!j)return;j.textContent
 function toggleStars(){document.body.classList.toggle('stars')}
 const CTRL=MODE===''||MODE==='audience'||MODE==='presenter';
 const typing=()=>{const a=document.activeElement;return a&&a.isContentEditable};
-function startVisible(){const st=$('#start');return st&&!st.classList.contains('hide')}
+function startVisible(){return false}
 if(CTRL)addEventListener('keydown',e=>{const k=e.key;
   if(startVisible()){if(k==='Escape')hideStart();else if(k==='Enter'||k===' '){e.preventDefault();hideStart();document.documentElement.requestFullscreen().catch(()=>{})}return}
   if(typing()){if(k==='Escape')document.activeElement.blur();return}
@@ -1174,19 +1158,6 @@ async function startDual(){
 function startManual(){const w=window.open(presURL('audience'),'spa-audience','popup,width=1280,height=760');
   if(!w){smsg('Chrome đã chặn cửa sổ bật lên. Bấm biểu tượng chặn popup trên thanh địa chỉ → <b>Luôn cho phép</b>, rồi bấm lại.');return}
   location.replace(presURL('presenter'))}
-if(!MODE){
-  document.body.insertAdjacentHTML('beforeend',`<div id="start"><div class="box">
-   <h2>Small details, big impression</h2>
-   <p>Bấm nút đỏ để mở trình chiếu toàn màn hình. Muốn chiếu ra máy chiếu thì để máy ở chế độ <b>Duplicate / Nhân bản</b> (Win + P).</p>
-   <button class="pri" id="b-single">▶ Bắt đầu trình chiếu<small>Mở toàn màn hình · → / Space / clicker để chuyển · N xem lời thoại · Esc thoát</small></button>
-   <button id="b-view">Xem / chỉnh sửa chữ<small>Không toàn màn hình · phím E để bật sửa chữ</small></button>
-   <div class="msg"></div><div class="diag" style="display:none"></div></div></div>`);
-  $('#b-single').onclick=e=>{e.stopPropagation();hideStart();document.documentElement.requestFullscreen().catch(()=>{})};
-  $('#b-view').onclick=e=>{e.stopPropagation();hideStart()};
-  $('#start').addEventListener('click',e=>{e.stopPropagation();if(e.target.id==='start'){hideStart();document.documentElement.requestFullscreen().catch(()=>{})}});
-  (async()=>{try{if('getScreenDetails' in window&&(await permState())==='granted')SD=await getScreenDetails()}catch(e){}diag();
-    if('onchange' in screen)screen.addEventListener('change',diag)})();
-}
 if(MODE==='audience'){
   document.title='Màn hình khán giả — Small details, big impression';
   document.body.insertAdjacentHTML('beforeend',`<div id="fsHint"><div><b>Kéo cửa sổ này sang máy chiếu</b>rồi bấm vào đây để bật toàn màn hình<br><small style="opacity:.6">(hoặc nhấn phím F)</small></div></div>`);
@@ -1228,6 +1199,15 @@ if(MODE==='presenter'){
 }
 
 if(MODE!=='presenter')(()=>{const h=(MODE&&MODE!=='audience')?'':decodeURIComponent(location.hash.slice(1));if(h){const[c,k]=h.split('.');const i=scenes.findIndex(s=>s.dataset.code===c);if(i>=0)return go(i,+k||0)}go(0,0)})();
+
+/* ===== auto lite mode for weak machines + first tip ===== */
+if(!MODE||MODE==='mirror'){
+  const tip=document.createElement('div');tip.id='tip';tip.className='hudg';tip.innerHTML='Click / → để chuyển slide · <b>F</b> toàn màn hình';document.body.appendChild(tip);
+  setTimeout(()=>tip.classList.add('show'),2600);const hideTip=()=>tip.classList.remove('show');setTimeout(hideTip,8600);addEventListener('keydown',hideTip,{once:true});addEventListener('click',hideTip,{once:true});
+  let n=0,t0=0,slow=0;const probe=t=>{if(!t0)t0=t;n++;if(t-t0<2500)return requestAnimationFrame(probe);const fps=n*1000/(t-t0);if(fps<42){document.body.classList.add('lite');console.info('lite mode, fps',fps.toFixed(1))}};
+  setTimeout(()=>requestAnimationFrame(probe),800);
+  addEventListener('keydown',e=>{if((e.key==='l'||e.key==='L')&&!document.body.classList.contains('editing'))document.body.classList.toggle('lite')});
+}
 </script>
 </body>
 </html>
